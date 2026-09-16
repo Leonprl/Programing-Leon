@@ -1,5 +1,5 @@
 #!/bin/bash
 echo "Starting installation..."
 sudo apt update
-sudo apt install curl
+sudo apt install nyancat
 echo "Installation complete!"
