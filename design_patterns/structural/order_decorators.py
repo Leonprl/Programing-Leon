@@ -57,7 +57,6 @@ class InsuranceDecorator(OrderDecorator):
     RATE = 0.05
 
     def _insurance(self):
-        # insurance is computed on the base price, like in the old code
         return self.get_base_price() * self.RATE
 
     def get_cost(self):

@@ -3,10 +3,8 @@ import xml.etree.ElementTree as ET
 from abc import ABC, abstractmethod
 
 
-# Legacy reporting system (can't modify - external library)
 class LegacyReportGenerator:
     def generate_report(self, data: dict) -> str:
-        """Returns XML format - old system"""
         xml = "<report>\n"
         for key, value in data.items():
             xml += f"  <{key}>{value}</{key}>\n"
@@ -25,7 +23,7 @@ class AnalyticsDashboard:
 class ReportGeneratorInterface(ABC):
     @abstractmethod
     def generate(self, data: dict) -> str:
-        """Must return a JSON string"""
+        pass
 
 
 class LegacyReportAdapter(ReportGeneratorInterface):
@@ -46,7 +44,6 @@ class LegacyReportAdapter(ReportGeneratorInterface):
 
     @staticmethod
     def _parse_value(text):
-        # XML only has strings, so try to get the numbers back
         if text is None:
             return None
         for cast in (int, float):

@@ -1,7 +1,6 @@
 import math
 
 
-# Problem 1 - complex numbers
 class Complex:
     def __init__(self, real, imag):
         self.real = real
@@ -21,7 +20,6 @@ class Complex:
         return f"{self.real} {sign} {abs(self.imag)}i"
 
 
-# Problem 2 - compare persons by age
 class Person:
     def __init__(self, name, age, gender):
         self.name = name
@@ -35,7 +33,6 @@ class Person:
         return f"Person({self.name}, {self.age})"
 
 
-# Problem 4 - dot product
 class Vector:
     def __init__(self, x, y, z):
         self.x = x
@@ -49,7 +46,6 @@ class Vector:
         return f"Vector({self.x}, {self.y}, {self.z})"
 
 
-# Problem 5 - all comparisons on the radius
 class Circle:
     def __init__(self, radius):
         self.radius = radius
@@ -76,7 +72,6 @@ class Circle:
         return f"Circle(r={self.radius})"
 
 
-# Problem 6 - compare points with their distance to the origin
 class Point:
     def __init__(self, x, y):
         self.x = x
@@ -104,7 +99,6 @@ class Point:
         return f"Point({self.x}, {self.y})"
 
 
-# Problem 7 - matrix product
 class Matrix:
     def __init__(self, rows):
         self.rows = rows

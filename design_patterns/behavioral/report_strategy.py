@@ -49,7 +49,6 @@ class JSONFormatStrategy(ReportFormatStrategy):
         return json.dumps(data, indent=2)
 
 
-# added afterwards, nothing else had to change
 class HTMLFormatStrategy(ReportFormatStrategy):
     extension = ".html"
 

@@ -75,7 +75,6 @@ class EmployeeBuilder:
         return self
 
     def build(self):
-        # all the validation is in one place now
         if not self._data.get("first_name") or not self._data.get("last_name"):
             raise ValueError("Name is required")
         if "@" not in self._data.get("email", ""):
@@ -89,7 +88,6 @@ class EmployeeBuilder:
 
 
 class DeveloperBuilder(EmployeeBuilder):
-    """Preset: a developer always gets a laptop + vpn + admin rights"""
 
     def __init__(self, first_name, last_name, email, salary=60000):
         super().__init__()
@@ -98,17 +96,6 @@ class DeveloperBuilder(EmployeeBuilder):
              .with_job("Engineering", "Developer", salary)
              .with_equipment(laptop=True)
              .with_access(vpn=True, admin=True)
-             .in_office("Paris HQ"))
-
-
-class InternBuilder(EmployeeBuilder):
-    def __init__(self, first_name, last_name, email, department):
-        super().__init__()
-        (self.with_name(first_name, last_name)
-             .with_email(email)
-             .with_job(department, "Intern", 15000)
-             .with_equipment(laptop=True)
-             .with_contract("internship")
              .in_office("Paris HQ"))
 
 
@@ -125,6 +112,4 @@ if __name__ == "__main__":
     print(employee)
 
     dev = DeveloperBuilder("John", "Doe", "john.doe@company.com").build()
-    intern = InternBuilder("Jane", "Smith", "jane.smith@company.com", "Marketing").with_manager(42).build()
     print(dev)
-    print(intern)

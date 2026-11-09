@@ -87,12 +87,6 @@ classDiagram
     Payment "0..*" --> "1" Doctor : forwarded to
 ```
 
-Choices:
-- `User` superclass for the shared attributes (id, name, password, login/logout).
-- Payment types use inheritance + polymorphism: the organizer just calls `process()` whatever the type is (it's basically the Strategy pattern).
-- A patient can consult several doctors since each `HealthProblem` has its own doctor.
-- A prescription keeps a reference to the previous one, so we keep the history.
-
 ## Sequence diagrams
 
 ### Patient registration
@@ -149,10 +143,3 @@ sequenceDiagram
         O-->>P: payment failed, try again
     end
 ```
-
-## Questions
-
-- **Patient with several doctors**: one doctor per HealthProblem, so a patient with 2 problems can see 2 doctors.
-- **Reusable prescriptions**: a prescription can point to a previous one (renewal) instead of copying it.
-- **Pattern for payments**: Strategy (each payment type implements `process()`), and a Factory to create the right payment object.
-- **Data integrity**: the payment is only forwarded to the doctor if `process()` succeeded, and it should be done in a single DB transaction.

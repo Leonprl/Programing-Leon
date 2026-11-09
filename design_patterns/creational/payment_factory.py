@@ -11,7 +11,6 @@ class PaymentProcessor(ABC):
         pass
 
     def process(self, amount: float, details: dict) -> dict:
-        # same flow for every payment method, only the rules change
         if not self.validate(details):
             return {"success": False, "error": f"Invalid details for {self.name}"}
         fee = round(self.fee(amount), 2)
@@ -59,29 +58,10 @@ class PaymentFactory:
         "paypal": PayPalProcessor,
     }
 
-    @classmethod
-    def register(cls, name, processor_class):
-        # new payment methods are added here, process() never changes
-        cls._processors[name] = processor_class
-
     def get_processor(self, payment_type: str) -> PaymentProcessor:
         if payment_type not in self._processors:
             raise ValueError(f"Unknown payment type: {payment_type}")
         return self._processors[payment_type]()
-
-
-# example: adding Apple Pay without touching the other classes
-class ApplePayProcessor(PaymentProcessor):
-    name = "apple_pay"
-
-    def validate(self, details):
-        return bool(details.get("device_token"))
-
-    def fee(self, amount):
-        return amount * 0.015
-
-
-PaymentFactory.register("apple_pay", ApplePayProcessor)
 
 
 if __name__ == "__main__":
@@ -96,4 +76,3 @@ if __name__ == "__main__":
     processor = factory.get_processor("paypal")
     print(processor.process(100.0, {"email": "leon"}))
 
-    print(factory.get_processor("apple_pay").process(100.0, {"device_token": "abc"}))

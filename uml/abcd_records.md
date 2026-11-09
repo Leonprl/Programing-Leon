@@ -2,8 +2,6 @@
 
 ## Use case diagram
 
-(mermaid has no real use case diagram so I used a flowchart: rounded boxes = use cases)
-
 ```mermaid
 flowchart LR
     M([Member])
@@ -38,10 +36,6 @@ flowchart LR
     OU -. extend .-> PO
     SA -. extend .-> VM
 ```
-
-- `Verify Membership` and `Verify Item Availability` always happen when an order is placed -> include
-- `Apply Discount` and `Order Unavailable Items` only for Royal members -> extend
-- `Send Membership Application` only when the membership check fails (non-member) -> extend
 
 ## Class diagram
 

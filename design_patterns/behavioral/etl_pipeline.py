@@ -6,13 +6,12 @@ from abc import ABC, abstractmethod
 class DataPipeline(ABC):
     source_type = "source"
     required_fields = ()
-    delay = 0.5  # simulate network / disk latency
+    delay = 0.5
 
     def __init__(self, source):
         self.source = source
         self.data = None
 
-    # template method: the order of the steps is fixed here and only here
     def run(self):
         self.connect()
         self.data = self.extract()
@@ -25,7 +24,6 @@ class DataPipeline(ABC):
         self.cleanup()
         return f"{self.source_type} Pipeline finished"
 
-    # steps that change for each pipeline
     @abstractmethod
     def extract(self) -> list:
         pass
@@ -34,7 +32,6 @@ class DataPipeline(ABC):
     def transform(self, data: list) -> list:
         pass
 
-    # common steps (subclasses can still override them = hooks)
     def connect(self):
         print(f"Connecting to {self.source_type}: {self.source}")
         time.sleep(self.delay)
@@ -108,7 +105,6 @@ class DatabasePipeline(DataPipeline):
         return data
 
 
-# new pipeline to check the design: only extract/transform to write
 class XMLPipeline(DataPipeline):
     source_type = "XML"
     required_fields = ("order_id", "amount")

@@ -1,4 +1,3 @@
-# Problem 1
 class Vehicle:
     def drive(self):
         return "Driving a vehicle"
@@ -14,7 +13,6 @@ class Bicycle(Vehicle):
         return "Riding a bicycle"
 
 
-# Problem 2
 class Person:
     def __init__(self, name, age, address):
         self.name = name
@@ -43,7 +41,6 @@ class Employee(Person):
         return super().introduce() + f" I work at {self.company}."
 
 
-# Problem 3
 class BankAccount:
     def __init__(self, account_number, balance=0):
         self.account_number = account_number
