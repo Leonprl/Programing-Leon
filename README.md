@@ -1,6 +1,6 @@
 # Programing-Leon
 
-exos du cours d'OOP / design patterns (AIDAMS 2A)
+exos du cours d'OOP (AIDAMS 2A)
 
 - `install.sh` : exo git
 - `linux/env_install.sh` : script d'install python + jupyter
